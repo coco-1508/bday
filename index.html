@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 18th Birthday Manashreee ♡✨</title>
+    <title>Happy 18th Birthday ♡✨</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -268,6 +268,13 @@
             word-wrap: break-word;
         }
 
+        /* Fix: ensure message pages stack from top and buttons aren't vertically centered/cropped */
+        .card.message-card { align-items: stretch; }
+        .card.message-card .card-content { justify-content: flex-start; align-items: stretch; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+        .card.message-card .message-text { display: flex; flex-direction: column; justify-content: flex-start; }
+        .card.message-card .message-text .message-body { flex: 1 1 auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+        .card.message-card .message-text .next-btn { align-self: center; margin-top: 16px; position: relative; z-index: 2; }
+
         @media (max-width: 850px) { 
             .card { max-height: none; height: calc(var(--vh, 1vh) * 100); width: 95%; overflow: auto; -webkit-overflow-scrolling: touch; }
             /* allow page/card to scroll normally on small screens */
@@ -528,7 +535,7 @@
     <div class="page active" id="page-0">
         <div class="card" style="justify-content: center; align-items: center; text-align: center;">
             <div class="card-content">
-                <h1>Happy 18th Birthday, Sweetheart!</h1>
+                <h1>Happy 18th Birthday, Sweetheart!♡✨</h1>
                 <div style="display: flex; gap: 20px; justify-content: center; margin: 30px 0;">
                     <div class="countdown-item"><span class="countdown-number" id="days">00</span><br><small>Days</small></div>
                     <div class="countdown-item"><span class="countdown-number" id="hours">00</span><br><small>Hrs</small></div>
@@ -545,12 +552,12 @@
     <div class="page gallery-page" id="page-1">
         <div class="card">
             <div class="card-content">
-                <h2>Our Beautiful Memories</h2>
-                <p style="margin-bottom: 20px;">A scroll through our journey together. Click any photo to enlarge!</p>
+                <h2>Mah,Pretty Babyy!✨</h2>
+                <p style="margin-bottom: 20px;">My mau in her golden hour hehe😍 (Click any photo to enlarge!)</p>
                 <div class="image-gallery-grid" id="image-gallery">
                     <!-- Images will be injected here by JavaScript -->
                 </div>
-                <button class="next-btn" onclick="nextPage(2)">Continue to Messages →</button>
+                <button class="next-btn" onclick="nextPage(2)">Continue →</button>
             </div>
         </div>
     </div>
@@ -567,8 +574,8 @@
     <div class="page" id="page-2">
         <div class="card" style="justify-content: center; align-items: center; text-align: center;">
             <div class="card-content">
-                <h2>A Symphony of Love...</h2>
-                <p style="font-size: 1.5rem; max-width: 600px;">Before we continue, here are some heartwarming messages from your favorite people who adore you endlessly. ❤️</p>
+                <h2>Words from your loved ones...</h2>
+                <p style="font-size: 1.5rem; max-width: 600px;">Hie Mau,have a moment and realise what you mean to the world. Here are some heartwarming messages from your favorite people who adore you endlessly. ❤️</p>
                 <button class="next-btn" onclick="nextPage(3)">Unwrap the Messages →</button>
             </div>
         </div>
@@ -607,7 +614,10 @@
                 <div class="message-body">
                 <p>"Happy Birthday Manshree! 🎉It’s funny how we became friends I still remember when our class teacher Sheela Mishra forced us to sit together in 9th std At first we were literally enemies 😂 I used to irritate you so much, and somehow from all that fighting and teasing we unknowingly became friends.Those bench partner memories are honestly unforgettable. And yes… I’m still sorry for secretly reading your personal diary once 😭 
                    .Anyway, it’s your special day today. I hope this year brings you lots of happiness, success and love. Stay the same amazing person you are. Have an awesome birthday!"</p>
-                <button class="next-btn" onclick="nextPage(5)">Next Sweet Note →</button>
+                <button class="next-btn" onclick="nextPage(5)">Next Reflection →</button>
+                    <button class="next-btn" onclick="nextPage(16)">Next Sweet Note →</button>
+                    <button class="next-btn" onclick="nextPage(16)">Almost There! →</button>
+                    <!-- Removed empty person-12 and person-13 pages to keep flow concise -->
                 </div>
             </div>
         </div>
@@ -623,7 +633,7 @@
                 </div>
                 <div class="message-body">
                 <p>"happyyy birthdayyy millennial bitch behn meriii🤭 bro tbh apan ne jitna bhi time spend Kiya h abhi tk saath mein it was sooo soo much memorable n obvi aur bahot memories banani h fs. at start meko laga bhi nhi tha ki we would come this far AND basically become a part of each other's life. im soo grateful to have a caring, loving, understanding and thodi si cringe behn like u😋. .this is ur day bbg and enjoy kr ekdum ekdum jyada. n sorry itna pareshan karne ke liye but voh rukne nhi vala h🤡. once again have a great day and I hope all ur dreams come true (especially with ur bbg🤭)..Once again happyyy birthdayyy 🎉🎉🎉✨"</p>
-                <button class="next-btn" onclick="nextPage(6)">Next Sweet Note →</button>
+                <button class="next-btn" onclick="nextPage(6)">More love ahead →</button>
                 </div>
             </div>
         </div>
@@ -640,7 +650,7 @@
                 <div class="message-body">
                 <p>"happy birthday, manya! to the girl who made ‘front bench opposite sheela teacher’ feel like a high-stakes adventure, from the endless gossip to the crazy talks and you somehow managing to be both the class nerd and my favorite partner in crime ♡.thanks for being the one who actually got me to open a book occasionally. you’re the sweetest (and craziest) bench partner i could’ve asked for. let’s meet soon! and happy birthday again sweetie.<br>
                     <br>tujhi laadki anya."</p>
-                <button class="next-btn" onclick="nextPage(7)">Next Sweet Note →</button>
+                <button class="next-btn" onclick="nextPage(7)">Reveal More →</button>
                 </div>
             </div>
         </div>
@@ -660,7 +670,7 @@
                     On your special day, I want to thank you for being an incredible friend. Your generosity and compassion have made a lasting impact on my life, and I’m so grateful for the time we spend together._ ⌚<br>
                     Here’s to another year of adventures, laughter, and making more unforgettable memories! May your birthday be filled with joy, love, and celebration. <br>
                     <br>🎂 *HAPPY BIRTHDAY*🎂🎉"</p>
-                    <button class="next-btn" onclick="nextPage(8)">Next Sweet Note →</button>
+                    <button class="next-btn" onclick="nextPage(8)">Follow the affection →</button>
                 </div>
             </div>
         </div>
@@ -696,7 +706,7 @@
                     <p>"Your jokes in class were honestly the best part of my day. Those little moments are some of my favorite memories. Even now, whenever I remember those classes, I don’t remember the lessons first — I remember you making everyone smile. You had this special talent of turning an ordinary day into a funny one, and that’s what makes you such an amazing best friend. 🫂😽ily Your jokes didn’t just entertain us, they made our school days unforgettable🥹🥹<br>
                     happyy birthday too uhhh lovee andd I miss uhhh a lottt😭😭<br>
                     ~from khushi♡♡😽"</p>
-                    <button class="next-btn" onclick="nextPage(10)">Next Sweet Note →</button>
+                    <button class="next-btn" onclick="nextPage(10)">Flip a page →</button>
                 </div>
             </div>
         </div>
@@ -704,11 +714,11 @@
     <!-- Page 10 -->
     <div class="page" id="page-10">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%208.jpg');"></div>
+            <div class="message-img" style="background-image: url('new/person 10.jpg');"></div>
             <div class="message-text">
                 <h2>from Apurva...</h2>
                 <div class="image-placeholder">
-                    <img src="persons/person%208.jpg" alt="Person 8">
+                    <img src="new/person 10.jpg" alt="Person 10">
                 </div>
                 <div class="message-body">
                     <p>"HAPPY BIRTHDAY MY DEAR MANASHREE💖<br>
@@ -717,7 +727,7 @@
                     But just keep shining, keep spreading love, keep your kindness❤️
                     May this year brings alot of happiness, success nd love in your life cutie. Love you soo muchhh. Maza aashirwad aahee tuzyaa pathii nkki foundation changlya marks ne pass hoshil even boards la changl score krshil😌<br> 
                     <br>Happy Birthday once again MANASHREEEEE🥹❤️"</p>
-                    <button class="next-btn" onclick="nextPage(11)">Next Sweet Note →</button>
+                    <button class="next-btn" onclick="nextPage(11)">More for you →</button>
                 </div>
             </div>
         </div>
@@ -725,11 +735,11 @@
     <!-- Page 11 -->
     <div class="page" id="page-11">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%209.jpg');"></div>
+            <div class="message-img" style="background-image: url('new/person 11.jpg');"></div>
             <div class="message-text">
                 <h2>from Amira</h2>
                 <div class="image-placeholder">
-                    <img src="persons/person%209.jpg" alt="Amira">
+                    <img src="new/person 11.jpg" alt="Amira">
                 </div>
                 <div class="message-body">
                     <p>"Happy Birthday, Manashree!!! I know this year has been a lot for you, with broken friendships and so much more, but you got through it like you always do, bravely. I love you a lot, more than Clips. I really hope we get to see each other again this year after 12th. I’m not ready to say goodbye ever.<br>
@@ -745,12 +755,13 @@
         <div class="card message-card">
             <div class="message-img" style="background-image: url('person-placeholder.jpg');"></div>
             <div class="message-text">
-                <h2>From [Person Name 10]...</h2>
+                <h2>from Ayush...</h2>
                 <div class="image-placeholder">
                     <!-- placeholder: no image provided -->
                 </div>
                 <div class="message-body">
-                    <p>"Message from person 10. (Will be provided later)"</p>
+                    <p>"Happy Birthday! 🫶🏻🎂
+                    <br>Thank you for always being such a supportive and understanding friend. I really appreciate having you around and all the little moments we share🤍!Wishing you lots of happiness, success, and beautiful memories in the year ahead. Have an amazing day! ✨"</p>
                     <button class="next-btn" onclick="nextPage(13)">Next Sweet Note →</button>
                 </div>
             </div>
@@ -761,57 +772,29 @@
         <div class="card message-card">
             <div class="message-img" style="background-image: url('person-placeholder.jpg');"></div>
             <div class="message-text">
-                <h2>From [Person Name 11]...</h2>
+                <h2>from Manasi</h2>
                 <div class="image-placeholder">
                     <!-- placeholder: no image provided -->
                 </div>
                 <div class="message-body">
-                    <p>"Message from person 11. (Will be provided later)"</p>
-                    <button class="next-btn" onclick="nextPage(14)">Next Sweet Note →</button>
+                    <p>"Happy Birthday BBG 💗🎀
+                    <br>I just want you to know how grateful I am to have you as my first friend in college and my bench partner. All the little talks, the secrets we shared, and those simple moments really meant a lot to me.I know I may come across as rude sometimes(so sorry for that) but deep down I truly care about you and value our friendship more than you probably know. I might not always show it properly, but you are really special to me and I’m very thankful for our friendship.
+                    <br>Wishing you a beautiful birthday and a year full of happiness,success, and lovely moments🫶🏻✨
+                        Enjoy your day and may all you wish be yours this year 🧿"</p>
+                    <button class="next-btn" onclick="nextPage(16)">Next Sweet Note →</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Page 14 -->
-    <div class="page" id="page-14">
-        <div class="card message-card">
-            <div class="message-img" style="background-image: url('person-placeholder.jpg');"></div>
-            <div class="message-text">
-                <h2>From [Person Name 12]...</h2>
-                <div class="image-placeholder">
-                    <!-- placeholder: no image provided -->
-                </div>
-                <div class="message-body">
-                    <p>"Message from person 12. (Will be provided later)"</p>
-                    <button class="next-btn" onclick="nextPage(15)">Next Sweet Note →</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Page 15 -->
-    <div class="page" id="page-15">
-        <div class="card message-card">
-            <div class="message-img" style="background-image: url('person-placeholder.jpg');"></div>
-            <div class="message-text">
-                <h2>From [Person Name 13]...</h2>
-                <div class="image-placeholder">
-                    <!-- placeholder: no image provided -->
-                </div>
-                <div class="message-body">
-                    <p>"Message from person 13. (Will be provided later)"</p>
-                    <button class="next-btn" onclick="nextPage(16)">Almost There! →</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Removed empty person-12 and person-13 placeholder pages -->
 
     <!-- Page 16: Suspense Page -->
     <div class="page" id="page-16">
         <div class="card" style="justify-content: center; align-items: center; text-align: center;">
             <div class="card-content">
                 <h2>And now, for the grand finale...</h2>
-                <p style="font-size: 1.5rem; max-width: 600px;">Get ready for the most special message, crafted just for your beautiful heart. ✨</p>
-                <button class="next-btn" onclick="nextPage(17)">Unveil the Surprise →</button>
+                <p style="font-size: 1.5rem; max-width: 600px;">All these people really love youu,which counts as another evidence for the beautiful person you are!<br>btw I know another person who loves you more than anyone else.That person deserves his moment too.<br>hehe its my turn now,you ready for this bby?✨</p>
+                <button class="next-btn" onclick="nextPage(17)">Click to hear the voice of my heart →</button>
             </div>
         </div>
     </div>
@@ -820,10 +803,10 @@
     <div class="page" id="page-17">
         <div class="card">
             <div class="card-content">
-                <h2 style="font-size: 4rem;">To My Dearest Girlfriend,</h2>
+                <h2 style="font-size: 4rem;">The star of my eye✨❤️,</h2>
                 <div id="typewriter"></div>
-                <div id="signature">With all my love, [Your Name]</div>
-                <button id="cake-trigger" class="next-btn" style="display: none; margin: 20px auto;" onclick="nextPage(18)">Make a Wish 🎂</button>
+                <div id="signature">With all my love, your coco(bbg)🤭</div>
+                <button id="cake-trigger" class="next-btn" style="display: none; margin: 20px auto;" onclick="nextPage(4)">Make a Wish 🎂</button>
             </div>
         </div>
     </div>
@@ -858,7 +841,19 @@
 
     <script>
         let currentPage = 0;
-        const myLetter = `To the most incredible person I know,
+        const myLetter = `To the most incredible and beautiful human I know ✨❤️,
+
+Hah its finally here! My princess is officially and adult now.ILYSM BBY <33 more than any word can ever express. Im so obsesed with you. I cant tell you what you do to me. Its like when i see you i feel this fresh air of warmth. im obsessed with those pearly eyes of yours. And those those godamn lips of your. AGHHH YOU MAKE ME LOSE SANITY EVERY FCKING TIME AND SEE YOUU. And that too effortlessly as if you were made to make me go crazy(which you obviously are very good at)
+
+i cant thank you enough for accepting me in your life. And i swear texting you that day was the best desicion ive ever taken. Were so perfect mau. we fill eachother in ways as if we were destined to be together. since the day we texted, there hasnt been a single day where i havnt missed you. And your so sweet bbg (even though you deny this everytime) and ive never seen a person as beutiful as you. and i dont mean your look(you obv are the prettiet woman in the enitre world hehe)
+
+anyways you know i can keep talking about you for hours so ill probably hold for now( thoda rush zhala i dont have much time left hehe)
+
+Bby ik im not able to give you much of my attenstion and i hate myself for that. th you deserve all the attention, all the warmth, and all the happiness in this world. ILSYMM BBY MORE THAN ANYTHING DEAR ME <3 I'll always love youuu till the die i die.
+
+And bby ik were having a tough phase rn, but please remember ki well go through this together okay.WE'LL BE TOGETHER TILL THE WORLD FALLS APART I PROMISE YOU. my eyes will never forget your picture 
+
+And mau youll be moving to mumbai in 2-3 months and i want to to stay happy and strong there too okay ill always be with you dw.I dont think ill ever be ready to say goodbyeto you . sod i dont wanna make you sad so well talk later im running out of time 
 
 I wanted to create something truly special to show you just how much you mean to me. You're finally 18, and I couldn't be more proud of the beautiful, kind, and amazing woman you've become.
 
@@ -869,7 +864,7 @@ I hope this year brings you all the happiness, success, and love you so profound
 Happy 18th Birthday, my beautiful!`;
 
         // Birthday Date: March 15, 2026
-        const birthdayDate = new Date("March 10, 2026 00:00:00").getTime(); // Changed to 2026 for testing
+        const birthdayDate = new Date("March 15, 2026 00:00:00").getTime(); // Changed to 2026 for testing
 
         const timer = setInterval(() => {
             const now = new Date().getTime();
