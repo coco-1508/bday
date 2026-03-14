@@ -143,7 +143,7 @@
             border: 2px solid rgba(178, 152, 220, 0.3);
             animation: slideIn 0.8s ease-out;
         }
-        .card-content {
+  the      .card-content {
             padding: 40px;
             display: flex;
             flex-direction: column;
@@ -234,9 +234,10 @@
         }
         .message-img {
             width: 45%;
-            min-width: 280px;
-            border-radius: 40px 0 0 40px;
-            min-height: 320px;
+            min-width: 300px;
+            flex: 0 0 45%;
+            border-radius: 20px 0 0 20px;
+            min-height: 360px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -258,6 +259,7 @@
             align-items: flex-start;
             text-align: left;
             overflow-y: visible;
+            flex: 1 1 auto;
         }
         .message-text h2 { font-size: 2.5rem; margin-bottom: 15px; }
         .message-text p { 
@@ -272,15 +274,15 @@
         .card.message-card { align-items: stretch; }
         .card.message-card .card-content { justify-content: flex-start; align-items: stretch; padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
         .card.message-card .message-text { display: flex; flex-direction: column; justify-content: flex-start; }
-        .card.message-card .message-text .message-body { flex: 1 1 auto; overflow: auto; -webkit-overflow-scrolling: touch; }
+        .card.message-card .message-text .message-body { flex: 1 1 auto; overflow: visible; -webkit-overflow-scrolling: auto; }
         .card.message-card .message-text .next-btn { align-self: center; margin-top: 16px; position: relative; z-index: 2; }
 
         @media (max-width: 850px) { 
             .card { max-height: none; height: calc(var(--vh, 1vh) * 100); width: 95%; overflow: auto; -webkit-overflow-scrolling: touch; }
             /* allow page/card to scroll normally on small screens */
             /* html, body scrolling left default (do not hide) */
-            .message-card { flex-direction: column; }
-            /* hide the background-side image on small screens to avoid duplication */
+            .message-card { flex-direction: column; gap: 12px; }
+            /* stack image above text and make it full width on small screens; hide left-column image to avoid duplicates */
             .message-img { display: none; }
             /* make message-text a column and let the body part scroll so images are fully visible */
             .message-text { padding: 20px; align-items: stretch; text-align: left; width: 100%; display: flex; flex-direction: column; flex: 1; min-height: 0; }
@@ -293,6 +295,12 @@
             .card h1 { font-size: 3rem; }
             .card h2 { font-size: 2.2rem; }
             .image-gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px; }
+        }
+
+        /* Ensure full image visibility on medium screens (tablet/desktop) */
+        @media (min-width: 851px) and (max-width: 1200px) {
+            .message-img { min-width: 320px; min-height: 420px; }
+            .message-text { padding: 30px; }
         }
 
         .image-placeholder {
@@ -311,10 +319,16 @@
             max-height: 320px;
         }
 
-          /* Show inline image placeholders after the message text on all viewports
-              and hide the left-column background image container so images are
-              never cropped and always appear after the text. */
+          /* Keep a single visible image per message page: hide left-column
+              `.message-img` everywhere and always show the inline
+              `.image-placeholder` (works for phone and laptop). */
           .message-img { display: none !important; }
+          .message-text .image-placeholder { display: block !important; }
+
+          /* Show the left-column image container on larger viewports so images
+             are part of document flow and scroll with the page. On small
+             screens the media query will stack elements vertically. */
+          .message-img { display: flex; }
           .message-text { display: flex; flex-direction: column; width: 100%; }
           .message-text .message-body { order: 0; }
           .message-text .image-placeholder { order: 1; display: block; width: 100%; max-width: 720px; margin: 12px auto; overflow: visible; }
@@ -505,6 +519,28 @@
         .cake-emoji { font-size: 6rem; cursor: pointer; transition: transform 0.15s ease; }
         .cake-emoji:active { transform: scale(0.95); }
         @media (max-width:480px) { .cake-emoji { font-size: 8rem; } }
+        /* Pin the typewriter header on page-17 to the top of the viewport */
+#page-17 .card-content { 
+    /* CHANGE: Use clamp to scale padding between 2.5rem (mobile) and 5.5rem (desktop) */
+    padding-top: clamp(2.5rem, 10vh, 5.5rem); 
+}
+
+#page-17 .card-content h2 {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* CHANGE: Use 95% width on mobile, but cap it at 1000px on desktop */
+    width: min(95%, 1000px); 
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.8));
+    z-index: 9999;
+    padding: 10px 16px;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    /* OPTIONAL: Add this to keep text from hitting the edges on tiny phones */
+    box-sizing: border-box;
+}
         /* GIF embeds styling */
         .gif-embeds { display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
         .gif-wrap { width: 180px; max-width: 30%; }
@@ -584,7 +620,6 @@
     <!-- Page 3 to Page 15: Messages -->
     <div class="page" id="page-3">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%201.jpg');"></div>
             <div class="message-text">
                 <h2>from Ridhima..</h2>
                 <div class="image-placeholder">
@@ -605,7 +640,6 @@
     <!-- Page 4 -->
     <div class="page" id="page-4">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%202.jpg');"></div>
             <div class="message-text">
                 <h2>from Raj..</h2>
                 <div class="image-placeholder">
@@ -615,8 +649,6 @@
                 <p>"Happy Birthday Manshree! 🎉It’s funny how we became friends I still remember when our class teacher Sheela Mishra forced us to sit together in 9th std At first we were literally enemies 😂 I used to irritate you so much, and somehow from all that fighting and teasing we unknowingly became friends.Those bench partner memories are honestly unforgettable. And yes… I’m still sorry for secretly reading your personal diary once 😭 
                    .Anyway, it’s your special day today. I hope this year brings you lots of happiness, success and love. Stay the same amazing person you are. Have an awesome birthday!"</p>
                 <button class="next-btn" onclick="nextPage(5)">Next Reflection →</button>
-                    <button class="next-btn" onclick="nextPage(16)">Next Sweet Note →</button>
-                    <button class="next-btn" onclick="nextPage(16)">Almost There! →</button>
                     <!-- Removed empty person-12 and person-13 pages to keep flow concise -->
                 </div>
             </div>
@@ -625,7 +657,6 @@
     <!-- Page 5 -->
     <div class="page" id="page-5">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%203.jpg');"></div>
             <div class="message-text">
                 <h2>from Shalmali...</h2>
                 <div class="image-placeholder">
@@ -641,7 +672,6 @@
     <!-- Page 6 -->
     <div class="page" id="page-6">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%204.jpg');"></div>
             <div class="message-text">
                 <h2>from Ananya</h2>
                 <div class="image-placeholder">
@@ -658,7 +688,6 @@
     <!-- Page 7 -->
     <div class="page" id="page-7">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%205.jpg');"></div>
             <div class="message-text">
                 <h2>from Manthan...</h2>
                 <div class="image-placeholder">
@@ -678,7 +707,6 @@
     <!-- Page 8 -->
     <div class="page" id="page-8">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%206.jpg');"></div>
             <div class="message-text">
                 <h2>from Saniya...</h2>
                 <div class="image-placeholder">
@@ -696,7 +724,6 @@
     <!-- Page 9 -->
     <div class="page" id="page-9">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('persons/person%207.jpg');"></div>
             <div class="message-text">
                 <h2>from Khushi...</h2>
                 <div class="image-placeholder">
@@ -714,11 +741,10 @@
     <!-- Page 10 -->
     <div class="page" id="page-10">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('new/person 10.jpg');"></div>
             <div class="message-text">
                 <h2>from Apurva...</h2>
                 <div class="image-placeholder">
-                    <img src="new/person 10.jpg" alt="Person 10">
+                    <img src="persons/person 8.jpg" alt="Apurva">
                 </div>
                 <div class="message-body">
                     <p>"HAPPY BIRTHDAY MY DEAR MANASHREE💖<br>
@@ -735,11 +761,10 @@
     <!-- Page 11 -->
     <div class="page" id="page-11">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('new/person 11.jpg');"></div>
             <div class="message-text">
                 <h2>from Amira</h2>
                 <div class="image-placeholder">
-                    <img src="new/person 11.jpg" alt="Amira">
+                    <img src="persons/person 9.jpg" alt="Amira">
                 </div>
                 <div class="message-body">
                     <p>"Happy Birthday, Manashree!!! I know this year has been a lot for you, with broken friendships and so much more, but you got through it like you always do, bravely. I love you a lot, more than Clips. I really hope we get to see each other again this year after 12th. I’m not ready to say goodbye ever.<br>
@@ -753,11 +778,10 @@
     <!-- Page 12 -->
     <div class="page" id="page-12">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('person-placeholder.jpg');"></div>
             <div class="message-text">
                 <h2>from Ayush...</h2>
                 <div class="image-placeholder">
-                    <!-- placeholder: no image provided -->
+                    <img src="new/person 10.jpg" alt="Ayush">
                 </div>
                 <div class="message-body">
                     <p>"Happy Birthday! 🫶🏻🎂
@@ -770,11 +794,10 @@
     <!-- Page 13 -->
     <div class="page" id="page-13">
         <div class="card message-card">
-            <div class="message-img" style="background-image: url('person-placeholder.jpg');"></div>
             <div class="message-text">
                 <h2>from Manasi</h2>
                 <div class="image-placeholder">
-                    <!-- placeholder: no image provided -->
+                    <img src="new/person 11.jpg" alt="Manasi">
                 </div>
                 <div class="message-body">
                     <p>"Happy Birthday BBG 💗🎀
@@ -805,7 +828,6 @@
             <div class="card-content">
                 <h2 style="font-size: 4rem;">The star of my eye✨❤️,</h2>
                 <div id="typewriter"></div>
-                <div id="signature">With all my love, your coco(bbg)🤭</div>
                 <button id="cake-trigger" class="next-btn" style="display: none; margin: 20px auto;" onclick="nextPage(4)">Make a Wish 🎂</button>
             </div>
         </div>
@@ -849,7 +871,7 @@ i cant thank you enough for accepting me in your life. And i swear texting you t
 
 anyways you know i can keep talking about you for hours so ill probably hold for now( thoda rush zhala i dont have much time left hehe)
 
-Bby ik im not able to give you much of my attenstion and i hate myself for that. th you deserve all the attention, all the warmth, and all the happiness in this world. ILSYMM BBY MORE THAN ANYTHING DEAR ME <3 I'll always love youuu till the die i die.
+Bby ik im not able to give you much of my attenstion and i hate myself for that. th you deserve all the attention, all the warmth, and all the happiness in this world. ILSYMM BBY MORE THAN ANYTHING DEAR to ME <3 I'll always love youuu till the die i die.Ill always be your biggest fan you youll always shine brighter in my eyes than the stars and moons
 
 And bby ik were having a tough phase rn, but please remember ki well go through this together okay.WE'LL BE TOGETHER TILL THE WORLD FALLS APART I PROMISE YOU. my eyes will never forget your picture 
 
@@ -861,10 +883,10 @@ Thank you for every single laugh, every shared dream, and for being the most won
 
 I hope this year brings you all the happiness, success, and love you so profoundly deserve. May all your dreams sparkle into reality.
 
-Happy 18th Birthday, my beautiful!`;
+Happy 18th Birthday, my beautiful! <br> With all my love, your coco(bbg)🤭`;
 
         // Birthday Date: March 15, 2026
-        const birthdayDate = new Date("March 15, 2026 00:45:00").getTime(); // Changed to 2026 for testing
+        const birthdayDate = new Date("March 15, 2026 02:20:00").getTime(); // Changed to 2026 for testing
 
         const timer = setInterval(() => {
             const now = new Date().getTime();
@@ -1030,6 +1052,41 @@ Happy 18th Birthday, my beautiful!`;
                 document.querySelector('.music-toggle').innerHTML = '🔇'; // Music muted icon
             }
         }
+
+        // Assign images by sender name (robust to page reordering)
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameMap = {
+                'Ridhima': 'persons/person 1.jpg',
+                'Raj': 'persons/person 2.jpg',
+                'Shalmali': 'persons/person 3.jpg',
+                'Ananya': 'persons/person 4.jpg',
+                'Manthan': 'persons/person 5.jpg',
+                'Saniya': 'persons/person 6.jpg',
+                'Khushi': 'persons/person 7.jpg',
+                'Apurva': 'persons/person 8.jpg',
+                'Amira': 'persons/person 9.jpg',
+                'Ayush': 'new/person 10.jpg',
+                'Manasi': 'new/person 11.jpg'
+            };
+
+            // Find all message pages and set their inline placeholder image if we have a mapping
+            for (let i = 3; i <= 13; i++) {
+                const page = document.getElementById(`page-${i}`);
+                if (!page) continue;
+                const heading = page.querySelector('h2');
+                if (!heading) continue;
+                // Extract name after 'from'
+                const name = heading.textContent.replace(/^from\s*/i, '').split('...')[0].trim().replace(/\.+$/,'');
+                const mapped = nameMap[name];
+                const placeholderImg = page.querySelector('.image-placeholder img');
+                if (mapped && placeholderImg) {
+                    placeholderImg.src = mapped;
+                    placeholderImg.alt = name;
+                }
+            }
+
+            // (Apurva/Amira images removed per user request)
+        });
     </script>
 </body>
 </html>
